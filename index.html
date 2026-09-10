@@ -1,0 +1,598 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Best Friend Theatre</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#05030b;
+    font-family:Georgia,"Times New Roman",serif;
+}
+body{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+#stage{
+    position:relative;
+    width:100vw;
+    height:100vh;
+    overflow:hidden;
+    background:#05030b;
+}
+#bg{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    opacity:0;
+    transform:scale(1.04);
+    transition:opacity 1.2s ease,transform 8s ease;
+}
+#vignette{
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(circle at center,
+        rgba(0,0,0,0) 35%,
+        rgba(0,0,0,.28) 68%,
+        rgba(0,0,0,.72) 100%);
+    pointer-events:none;
+}
+#particles{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+}
+#content{
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:30px;
+    z-index:5;
+}
+.title{
+    color:white;
+    font-size:clamp(42px,7vw,92px);
+    font-weight:700;
+    line-height:1.05;
+    text-shadow:0 4px 28px rgba(0,0,0,.85);
+    animation:titleIn 1.2s ease both;
+}
+.subtitle{
+    margin-top:18px;
+    color:#fff;
+    font-size:clamp(18px,2.3vw,32px);
+    line-height:1.5;
+    max-width:950px;
+    text-shadow:0 3px 18px rgba(0,0,0,.9);
+    animation:fadeUp 1.2s .25s ease both;
+}
+.small{
+    margin-top:24px;
+    color:rgba(255,255,255,.88);
+    font-size:clamp(14px,1.5vw,20px);
+}
+.count{
+    color:white;
+    font-size:clamp(100px,22vw,240px);
+    font-weight:900;
+    text-shadow:0 0 40px rgba(255,255,255,.55);
+    animation:countIn .95s ease both;
+}
+.character{
+    position:absolute;
+    bottom:-2%;
+    max-height:78%;
+    max-width:42%;
+    object-fit:contain;
+    filter:drop-shadow(0 18px 30px rgba(0,0,0,.5));
+    animation:characterIn 1s ease both, float 3.8s ease-in-out 1s infinite;
+}
+.cake{
+    position:absolute;
+    bottom:10%;
+    right:8%;
+    width:min(24vw,300px);
+    max-height:42%;
+    object-fit:contain;
+    animation:cakeIn 1s .25s ease both, float 4s ease-in-out 1.2s infinite;
+    filter:drop-shadow(0 12px 24px rgba(0,0,0,.55));
+}
+.card{
+    width:min(850px,88vw);
+    padding:42px 48px;
+    border-radius:28px;
+    background:rgba(7,5,20,.66);
+    border:1px solid rgba(255,255,255,.22);
+    backdrop-filter:blur(12px);
+    box-shadow:0 18px 70px rgba(0,0,0,.45);
+    animation:cardIn 1s ease both;
+}
+.card p{
+    color:white;
+    font-size:clamp(20px,2.4vw,34px);
+    line-height:1.65;
+    text-shadow:0 2px 10px rgba(0,0,0,.7);
+}
+.highlight{
+    color:#ffe39b;
+}
+#controls{
+    position:absolute;
+    left:50%;
+    bottom:22px;
+    transform:translateX(-50%);
+    z-index:20;
+    padding:10px 16px;
+    border-radius:999px;
+    background:rgba(0,0,0,.42);
+    border:1px solid rgba(255,255,255,.15);
+    color:rgba(255,255,255,.8);
+    font:14px Arial,sans-serif;
+    backdrop-filter:blur(8px);
+}
+#start{
+    position:absolute;
+    inset:0;
+    z-index:50;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    background:
+      radial-gradient(circle at center,#241445 0%,#0b0715 45%,#030207 100%);
+    color:white;
+    text-align:center;
+    padding:30px;
+}
+#start h1{
+    font-size:clamp(38px,6vw,78px);
+    margin-bottom:16px;
+}
+#start p{
+    max-width:700px;
+    line-height:1.6;
+    opacity:.82;
+    font:18px Arial,sans-serif;
+}
+#startBtn{
+    margin-top:30px;
+    border:0;
+    cursor:pointer;
+    color:white;
+    padding:16px 34px;
+    border-radius:999px;
+    font-size:20px;
+    background:linear-gradient(135deg,#7d3cff,#d44cff);
+    box-shadow:0 12px 40px rgba(143,72,255,.4);
+    transition:transform .2s ease,box-shadow .2s ease;
+}
+#startBtn:hover{
+    transform:translateY(-2px) scale(1.02);
+    box-shadow:0 16px 48px rgba(143,72,255,.55);
+}
+.flash{
+    position:absolute;
+    inset:0;
+    z-index:15;
+    pointer-events:none;
+    background:white;
+    opacity:0;
+}
+.spark{
+    position:absolute;
+    width:5px;
+    height:5px;
+    border-radius:50%;
+    background:white;
+    box-shadow:0 0 14px white;
+    pointer-events:none;
+}
+.heart{
+    position:absolute;
+    font-size:28px;
+    opacity:0;
+    pointer-events:none;
+    animation:heartRise 3s ease-out forwards;
+}
+#progress{
+    position:absolute;
+    left:0;
+    bottom:0;
+    height:3px;
+    background:rgba(255,255,255,.8);
+    z-index:30;
+    width:0%;
+    transition:width .1s linear;
+}
+
+@keyframes titleIn{
+    from{opacity:0;transform:translateY(35px) scale(.96)}
+    to{opacity:1;transform:none}
+}
+@keyframes fadeUp{
+    from{opacity:0;transform:translateY(25px)}
+    to{opacity:1;transform:none}
+}
+@keyframes countIn{
+    0%{opacity:0;transform:scale(1.45)}
+    70%{opacity:1;transform:scale(.97)}
+    100%{opacity:1;transform:scale(1)}
+}
+@keyframes characterIn{
+    from{opacity:0;transform:translateY(60px)}
+    to{opacity:1;transform:none}
+}
+@keyframes cakeIn{
+    from{opacity:0;transform:translateY(55px) scale(.8)}
+    to{opacity:1;transform:none}
+}
+@keyframes cardIn{
+    from{opacity:0;transform:translateY(35px) scale(.97)}
+    to{opacity:1;transform:none}
+}
+@keyframes float{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-10px)}
+}
+@keyframes heartRise{
+    0%{opacity:0;transform:translateY(20px) scale(.7)}
+    15%{opacity:.9}
+    100%{opacity:0;transform:translateY(-180px) scale(1.2) rotate(15deg)}
+}
+</style>
+</head>
+
+<body>
+<div id="stage">
+    <img id="bg" alt="">
+    <div id="particles"></div>
+    <div class="flash" id="flash"></div>
+    <div id="content"></div>
+    <div id="vignette"></div>
+    <div id="progress"></div>
+    <div id="controls">Click / Space / → : Next &nbsp; | &nbsp; ← : Previous</div>
+
+    <div id="start">
+        <h1>✨ Best Friend Theatre ✨</h1>
+        <p>A little cinematic friendship surprise, made specially for Shree.</p>
+        <button id="startBtn">▶ Start Experience</button>
+    </div>
+</div>
+
+<audio id="music" preload="auto">
+    <source src="assets/birthday.ogg" type="audio/ogg">
+</audio>
+
+<script>
+const slides = [
+    {
+        type:"count",
+        bg:"assets/background_finale.png",
+        text:"3"
+    },
+    {
+        type:"count",
+        bg:"assets/background_finale.png",
+        text:"2"
+    },
+    {
+        type:"count",
+        bg:"assets/background_finale.png",
+        text:"1"
+    },
+    {
+        type:"birthday",
+        bg:"assets/background_birthday.png",
+        title:"🎂 Happy Birthday, Shree! 🎂",
+        subtitle:"Today is your day — full of smiles, happiness and beautiful memories."
+    },
+    {
+        type:"cake",
+        bg:"assets/background_birthday.png",
+        girl:"assets/girl_happy.png",
+        cake:"assets/cake.png",
+        title:"A Special Celebration",
+        subtitle:"Because someone as wonderful as you deserves a celebration."
+    },
+    {
+        type:"wish",
+        bg:"assets/background_garden.png",
+        title:"🌸 My Birthday Wish For You",
+        text:"May you always have reasons to smile, people who genuinely care about you, and the courage to chase every dream you have."
+    },
+    {
+        type:"celebrate",
+        bg:"assets/background_birthday.png",
+        girl:"assets/girl_celebrate.png",
+        title:"🎉 Keep Smiling!",
+        subtitle:"Keep shining, keep growing, and keep being the amazing person you are."
+    },
+    {
+        type:"memory",
+        bg:"assets/background_garden.png",
+        title:"🌿 Beautiful Memories",
+        text:"Some moments become memories. Some friendships become part of the journey. Ours is one of those friendships."
+    },
+    {
+        type:"message",
+        bg:"assets/background_garden.png",
+        title:"A Small Message",
+        text:"Life keeps changing, people come and go, but the good moments we share are always worth remembering. Thank you for being a genuinely good friend."
+    },
+    {
+        type:"you",
+        bg:"assets/background_garden.png",
+        title:"✨ You Are...",
+        text:"Kind. Strong. Funny. Precious as a friend. And absolutely deserving of every good thing coming your way."
+    },
+    {
+        type:"adventure",
+        bg:"assets/background_garden.png",
+        title:" More Adventures Ahead",
+        text:"More laughs. More crazy conversations. More memorable days. More achievements to celebrate."
+    },
+    {
+        type:"friendship",
+        bg:"assets/background_finale.png",
+        card:"assets/friendship_card.png",
+        title:"🤝 Friendship",
+        text:"Thank you for being a part of my journey. Here's to a beautiful friendship and many more memories ahead."
+    },
+    {
+        type:"finale",
+        bg:"assets/background_finale.png",
+        title:"🌟 Happy Birthday, Shree! 🌟",
+        subtitle:"Stay happy. Stay blessed. Keep smiling. And keep being you.",
+        text:"— Your Best Friend"
+    }
+];
+
+const durations = [
+    2,2,2,5,7,6,6,7,9,5,5,4,5
+];
+
+let index = 0;
+let elapsed = 0;
+let running = false;
+let last = performance.now();
+
+const stage = document.getElementById("stage");
+const bg = document.getElementById("bg");
+const content = document.getElementById("content");
+const progress = document.getElementById("progress");
+const particles = document.getElementById("particles");
+const music = document.getElementById("music");
+const start = document.getElementById("start");
+const flash = document.getElementById("flash");
+
+function setBackground(src){
+    bg.style.opacity = "0";
+    setTimeout(()=>{
+        bg.src = src;
+        bg.style.opacity = "1";
+        bg.style.transform = "scale(1.08)";
+    },80);
+}
+
+function clearExtra(){
+    document.querySelectorAll(".character,.cake,.heart,.spark").forEach(x=>x.remove());
+    particles.innerHTML="";
+}
+
+function makeHearts(amount=12){
+    for(let i=0;i<amount;i++){
+        const h=document.createElement("div");
+        h.className="heart";
+        h.textContent="♥";
+        h.style.left=(10+Math.random()*80)+"%";
+        h.style.bottom=(5+Math.random()*20)+"%";
+        h.style.animationDelay=(Math.random()*1.2)+"s";
+        h.style.fontSize=(18+Math.random()*20)+"px";
+        particles.appendChild(h);
+    }
+}
+
+function makeSparks(amount=70){
+    for(let i=0;i<amount;i++){
+        const s=document.createElement("div");
+        s.className="spark";
+        s.style.left=(20+Math.random()*60)+"%";
+        s.style.top=(15+Math.random()*55)+"%";
+        s.style.opacity=(.4+Math.random()*.6);
+        s.animate(
+            [
+                {transform:"translate(0,0) scale(.3)",opacity:0},
+                {transform:`translate(${(Math.random()-.5)*240}px,${(Math.random()-.5)*180}px) scale(1)`,opacity:1},
+                {transform:`translate(${(Math.random()-.5)*380}px,${(Math.random()-.5)*280}px) scale(0)`,opacity:0}
+            ],
+            {duration:1200+Math.random()*1800,iterations:Infinity,delay:Math.random()*1500}
+        );
+        particles.appendChild(s);
+    }
+}
+
+function burst(){
+    flash.animate(
+        [{opacity:0},{opacity:.8},{opacity:0}],
+        {duration:500,easing:"ease-out"}
+    );
+
+    makeHearts(18);
+    makeSparks(90);
+}
+
+function render(){
+    clearExtra();
+
+    const s=slides[index];
+    setBackground(s.bg);
+
+    let html="";
+
+    if(s.type==="count"){
+        html=`<div class="count">${s.text}</div>`;
+    }
+    else if(s.type==="birthday"){
+        html=`
+            <div class="title">${s.title}</div>
+            <div class="subtitle">${s.subtitle}</div>
+        `;
+        makeSparks(70);
+    }
+    else if(s.type==="cake"){
+        html=`
+            <div class="title" style="font-size:clamp(34px,5vw,70px)">${s.title}</div>
+            <div class="subtitle">${s.subtitle}</div>
+            <img class="character" src="${s.girl}">
+            <img class="cake" src="${s.cake}">
+        `;
+        makeHearts(10);
+    }
+    else if(s.type==="celebrate"){
+        html=`
+            <div class="title">${s.title}</div>
+            <div class="subtitle">${s.subtitle}</div>
+            <img class="character" src="${s.girl}">
+        `;
+        burst();
+    }
+    else if(s.type==="wish" || s.type==="memory" || s.type==="message" || s.type==="you" || s.type==="adventure"){
+        html=`
+            <div class="card">
+                <div class="title" style="font-size:clamp(34px,5vw,64px)">${s.title}</div>
+                <div class="subtitle">${s.text}</div>
+            </div>
+        `;
+        makeSparks(35);
+    }
+    else if(s.type==="friendship"){
+        html=`
+            <div class="card">
+                <div class="title" style="font-size:clamp(34px,5vw,62px)">${s.title}</div>
+                <img src="${s.card}" style="width:min(440px,75vw);margin:28px auto 18px;display:block;border-radius:18px;box-shadow:0 15px 40px rgba(0,0,0,.45)">
+                <div class="subtitle">${s.text}</div>
+            </div>
+        `;
+        makeHearts(14);
+    }
+    else if(s.type==="finale"){
+        html=`
+            <div class="card">
+                <div class="title">${s.title}</div>
+                <div class="subtitle">${s.subtitle}</div>
+                <div class="small">${s.text}</div>
+            </div>
+        `;
+        burst();
+    }
+
+    content.innerHTML=html;
+
+    if(index===0){
+        makeSparks(25);
+    }
+}
+
+function next(){
+    if(index<slides.length-1){
+        index++;
+        elapsed=0;
+        render();
+    }else{
+        running=false;
+    }
+}
+
+function prev(){
+    if(index>0){
+        index--;
+        elapsed=0;
+        render();
+    }
+}
+
+function loop(now){
+    if(!running)return;
+
+    const dt=(now-last)/1000;
+    last=now;
+
+    elapsed+=Math.min(dt,.1);
+
+    const duration=durations[index];
+    progress.style.width=Math.min(100,(elapsed/duration)*100)+"%";
+
+    if(elapsed>=duration)next();
+
+    requestAnimationFrame(loop);
+}
+
+async function startExperience(){
+    if(running)return;
+
+    try{
+        music.currentTime=0;
+        await music.play();
+    }catch(e){
+        console.log("Audio playback needs user interaction:",e);
+    }
+
+    start.style.display="none";
+    running=true;
+    index=0;
+    elapsed=0;
+    last=performance.now();
+    render();
+    requestAnimationFrame(loop);
+}
+
+document.getElementById("startBtn").addEventListener("click",startExperience);
+
+document.addEventListener("keydown",e=>{
+    if(e.code==="Space" || e.code==="ArrowRight"){
+        e.preventDefault();
+        next();
+    }
+    else if(e.code==="ArrowLeft"){
+        e.preventDefault();
+        prev();
+    }
+});
+
+stage.addEventListener("click",e=>{
+    if(start.style.display!=="none")return;
+    if(e.target.closest("#controls"))return;
+    next();
+});
+
+let touchX=0;
+
+stage.addEventListener("touchstart",e=>{
+    touchX=e.changedTouches[0].screenX;
+},{passive:true});
+
+stage.addEventListener("touchend",e=>{
+    const x=e.changedTouches[0].screenX;
+    const diff=x-touchX;
+
+    if(Math.abs(diff)>50){
+        if(diff<0)next();
+        else prev();
+    }
+},{passive:true});
+</script>
+</body>
+</html>
