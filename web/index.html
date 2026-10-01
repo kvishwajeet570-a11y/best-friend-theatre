@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>Best Friend Theatre</title>
+<title>Best Sister Theatre</title>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -98,7 +98,7 @@ body{
     max-width:42%;
     object-fit:contain;
     filter:drop-shadow(0 18px 30px rgba(0,0,0,.5));
-    animation:characterIn 1s ease both, float 3.8s ease-in-out 1s infinite;
+    animation:none;
 }
 .cake{
     position:absolute;
@@ -107,7 +107,7 @@ body{
     width:min(24vw,300px);
     max-height:42%;
     object-fit:contain;
-    animation:cakeIn 1s .25s ease both, float 4s ease-in-out 1.2s infinite;
+    animation:none;
     filter:drop-shadow(0 12px 24px rgba(0,0,0,.55));
 }
 .card{
@@ -252,6 +252,819 @@ body{
     15%{opacity:.9}
     100%{opacity:0;transform:translateY(-180px) scale(1.2) rotate(15deg)}
 }
+
+/* Mobile readability */
+@media(max-width:600px){
+    .card{
+        width:min(92vw,700px);
+        padding:22px 18px;
+    }
+
+    .card .title{
+        line-height:1.12;
+    }
+
+    .card .subtitle{
+        line-height:1.6;
+    }
+}
+
+
+/* ============================================================
+   FINAL SISTER PHOTO POSITION FIX
+   ============================================================ */
+
+.sister-bond-card{
+    width:min(920px,92vw) !important;
+    max-width:920px !important;
+    margin:0 auto !important;
+    padding:28px 24px 34px !important;
+    box-sizing:border-box !important;
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:center !important;
+    justify-content:center !important;
+}
+
+.sister-bond-card img.sister-main-photo{
+    width:min(430px,72vw) !important;
+    height:min(430px,52vh) !important;
+    max-width:430px !important;
+    max-height:430px !important;
+    object-fit:contain !important;
+    object-position:center center !important;
+    display:block !important;
+    margin:18px auto 22px !important;
+    border-radius:22px !important;
+    box-shadow:
+        0 18px 55px rgba(0,0,0,.55),
+        0 0 35px rgba(255,105,180,.22) !important;
+}
+
+.sister-bond-card .title{
+    width:100% !important;
+    text-align:center !important;
+    margin-bottom:8px !important;
+}
+
+.sister-bond-card .subtitle{
+    width:min(720px,88vw) !important;
+    text-align:center !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+}
+
+@media (max-width:700px){
+    .sister-bond-card{
+        width:94vw !important;
+        padding:20px 14px 26px !important;
+    }
+
+    .sister-bond-card img.sister-main-photo{
+        width:min(78vw,360px) !important;
+        height:min(48vh,360px) !important;
+        margin:12px auto 18px !important;
+    }
+}
+/* =========================================================
+   FINAL TEXT + PHOTO LAYOUT FIX
+   Text stays readable, photos stay below text.
+   ========================================================= */
+
+#content{
+    position:relative !important;
+    z-index:20 !important;
+    width:100% !important;
+    height:100% !important;
+}
+
+#particles{
+    z-index:2 !important;
+    pointer-events:none !important;
+}
+
+#vignette{
+    z-index:3 !important;
+    pointer-events:none !important;
+}
+
+.visual-slide{
+    position:relative !important;
+    width:100% !important;
+    height:100% !important;
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:center !important;
+    justify-content:flex-start !important;
+    overflow:hidden !important;
+    padding-top:clamp(35px,6vh,80px) !important;
+    box-sizing:border-box !important;
+}
+
+.visual-slide .slide-text{
+    position:relative !important;
+    z-index:30 !important;
+    width:min(92vw,1100px) !important;
+    text-align:center !important;
+    flex-shrink:0 !important;
+}
+
+.visual-slide .title{
+    position:relative !important;
+    z-index:31 !important;
+    margin:0 0 12px !important;
+    line-height:1.08 !important;
+    text-shadow:
+        0 3px 8px rgba(0,0,0,.95),
+        0 0 18px rgba(0,0,0,.8) !important;
+}
+
+.visual-slide .subtitle{
+    position:relative !important;
+    z-index:31 !important;
+    max-width:1000px !important;
+    margin:0 auto !important;
+    line-height:1.35 !important;
+    text-shadow:
+        0 3px 8px rgba(0,0,0,.95),
+        0 0 14px rgba(0,0,0,.85) !important;
+}
+
+.visual-slide .visual-area{
+    position:absolute !important;
+    z-index:10 !important;
+    left:0 !important;
+    right:0 !important;
+    bottom:2vh !important;
+    width:100% !important;
+    height:48vh !important;
+    min-height:280px !important;
+    display:flex !important;
+    justify-content:center !important;
+    align-items:flex-end !important;
+    pointer-events:none !important;
+}
+
+.visual-slide .character{
+    position:relative !important;
+    z-index:11 !important;
+    display:block !important;
+    width:min(52vw,720px) !important;
+    max-width:720px !important;
+    max-height:46vh !important;
+    height:auto !important;
+    object-fit:contain !important;
+    margin:0 !important;
+    transform:none !important;
+    filter:drop-shadow(0 12px 22px rgba(0,0,0,.55)) !important;
+}
+
+.cake-slide .visual-area{
+    justify-content:center !important;
+    gap:clamp(10px,3vw,45px) !important;
+}
+
+.cake-slide .character{
+    width:min(48vw,680px) !important;
+    max-height:43vh !important;
+}
+
+.cake-slide .cake{
+    position:relative !important;
+    z-index:12 !important;
+    display:block !important;
+    width:min(22vw,300px) !important;
+    max-height:34vh !important;
+    height:auto !important;
+    object-fit:contain !important;
+    margin:0 !important;
+    filter:drop-shadow(0 12px 20px rgba(0,0,0,.6)) !important;
+}
+
+.celebrate-slide .visual-area{
+    height:43vh !important;
+    bottom:1vh !important;
+}
+
+.celebrate-slide .character{
+    width:min(62vw,850px) !important;
+    max-height:42vh !important;
+}
+
+.visual-slide img{
+    pointer-events:none !important;
+}
+
+/* Keep navigation controls above everything */
+#controls{
+    z-index:100 !important;
+}
+
+/* Mobile */
+@media(max-width:700px){
+
+    .visual-slide{
+        padding-top:25px !important;
+    }
+
+    .visual-slide .slide-text{
+        width:94vw !important;
+    }
+
+    .visual-slide .title{
+        font-size:clamp(30px,9vw,48px) !important;
+    }
+
+    .visual-slide .subtitle{
+        font-size:clamp(18px,5vw,28px) !important;
+    }
+
+    .visual-slide .visual-area{
+        height:42vh !important;
+        bottom:3vh !important;
+    }
+
+    .cake-slide .character{
+        width:62vw !important;
+        max-height:34vh !important;
+    }
+
+    .cake-slide .cake{
+        width:25vw !important;
+        max-height:28vh !important;
+    }
+
+    .celebrate-slide .character{
+        width:82vw !important;
+        max-height:36vh !important;
+    }
+}
+
+/* ===== FINAL TEXT VISIBILITY FIX ===== */
+
+.cake-slide-fixed,
+.celebrate-slide-fixed{
+    position:relative !important;
+    width:100% !important;
+    height:100% !important;
+    overflow:hidden !important;
+}
+
+/* TEXT — ALWAYS VISIBLE AND ABOVE PHOTO */
+.fixed-slide-text{
+    position:absolute !important;
+    top:5vh !important;
+    left:5% !important;
+    width:90% !important;
+    z-index:500 !important;
+    text-align:center !important;
+    display:block !important;
+    visibility:visible !important;
+    opacity:1 !important;
+    pointer-events:none !important;
+}
+
+.fixed-slide-text .title{
+    position:relative !important;
+    z-index:501 !important;
+    display:block !important;
+    visibility:visible !important;
+    opacity:1 !important;
+    margin-bottom:18px !important;
+    line-height:1.1 !important;
+    text-shadow:
+        0 4px 10px #000,
+        0 0 20px rgba(0,0,0,.9) !important;
+}
+
+.fixed-slide-text .subtitle{
+    position:relative !important;
+    z-index:502 !important;
+    display:block !important;
+    visibility:visible !important;
+    opacity:1 !important;
+    line-height:1.35 !important;
+    text-shadow:
+        0 4px 10px #000,
+        0 0 18px rgba(0,0,0,.95) !important;
+}
+
+/* PHOTO — BELOW TEXT */
+.fixed-slide-images{
+    position:absolute !important;
+    left:0 !important;
+    right:0 !important;
+    bottom:2vh !important;
+    width:100% !important;
+    height:48vh !important;
+    z-index:50 !important;
+    display:flex !important;
+    align-items:flex-end !important;
+    justify-content:center !important;
+    pointer-events:none !important;
+}
+
+/* THREE-PHOTO COMPOSITION */
+.fixed-slide-images .character{
+    position:relative !important;
+    z-index:51 !important;
+    display:block !important;
+    width:min(64vw,850px) !important;
+    max-width:850px !important;
+    max-height:44vh !important;
+    height:auto !important;
+    object-fit:contain !important;
+    margin:0 auto !important;
+}
+
+/* CAKE */
+.cake-images{
+    gap:25px !important;
+}
+
+.cake-images .character{
+    width:min(58vw,760px) !important;
+    max-height:42vh !important;
+}
+
+.cake-images .cake{
+    position:relative !important;
+    z-index:52 !important;
+    width:min(22vw,300px) !important;
+    max-height:32vh !important;
+    height:auto !important;
+    object-fit:contain !important;
+}
+
+/* PARTICLES ALWAYS BEHIND TEXT */
+#particles{
+    z-index:5 !important;
+    pointer-events:none !important;
+}
+
+#content{
+    z-index:100 !important;
+}
+
+#controls{
+    z-index:1000 !important;
+}
+
+/* MOBILE */
+@media(max-width:700px){
+
+    .fixed-slide-text{
+        top:3vh !important;
+        left:3% !important;
+        width:94% !important;
+    }
+
+    .fixed-slide-text .title{
+        font-size:clamp(30px,9vw,48px) !important;
+    }
+
+    .fixed-slide-text .subtitle{
+        font-size:clamp(17px,4.8vw,25px) !important;
+    }
+
+    .fixed-slide-images{
+        height:43vh !important;
+        bottom:3vh !important;
+    }
+
+    .fixed-slide-images .character{
+        width:82vw !important;
+        max-height:37vh !important;
+    }
+
+    .cake-images .character{
+        width:62vw !important;
+    }
+
+    .cake-images .cake{
+        width:25vw !important;
+    }
+}
+/* =========================================================
+   FINAL TEXT + PHOTO LAYOUT FIX
+   Text stays readable, photos stay below text.
+   ========================================================= */
+
+#content{
+    position:relative !important;
+    z-index:20 !important;
+    width:100% !important;
+    height:100% !important;
+}
+
+#particles{
+    z-index:2 !important;
+    pointer-events:none !important;
+}
+
+#vignette{
+    z-index:3 !important;
+    pointer-events:none !important;
+}
+
+.visual-slide{
+    position:relative !important;
+    width:100% !important;
+    height:100% !important;
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:center !important;
+    justify-content:flex-start !important;
+    overflow:hidden !important;
+    padding-top:clamp(35px,6vh,80px) !important;
+    box-sizing:border-box !important;
+}
+
+.visual-slide .slide-text{
+    position:relative !important;
+    z-index:30 !important;
+    width:min(92vw,1100px) !important;
+    text-align:center !important;
+    flex-shrink:0 !important;
+}
+
+.visual-slide .title{
+    position:relative !important;
+    z-index:31 !important;
+    margin:0 0 12px !important;
+    line-height:1.08 !important;
+    text-shadow:
+        0 3px 8px rgba(0,0,0,.95),
+        0 0 18px rgba(0,0,0,.8) !important;
+}
+
+.visual-slide .subtitle{
+    position:relative !important;
+    z-index:31 !important;
+    max-width:1000px !important;
+    margin:0 auto !important;
+    line-height:1.35 !important;
+    text-shadow:
+        0 3px 8px rgba(0,0,0,.95),
+        0 0 14px rgba(0,0,0,.85) !important;
+}
+
+.visual-slide .visual-area{
+    position:absolute !important;
+    z-index:10 !important;
+    left:0 !important;
+    right:0 !important;
+    bottom:2vh !important;
+    width:100% !important;
+    height:48vh !important;
+    min-height:280px !important;
+    display:flex !important;
+    justify-content:center !important;
+    align-items:flex-end !important;
+    pointer-events:none !important;
+}
+
+.visual-slide .character{
+    position:relative !important;
+    z-index:11 !important;
+    display:block !important;
+    width:min(52vw,720px) !important;
+    max-width:720px !important;
+    max-height:46vh !important;
+    height:auto !important;
+    object-fit:contain !important;
+    margin:0 !important;
+    transform:none !important;
+    filter:drop-shadow(0 12px 22px rgba(0,0,0,.55)) !important;
+}
+
+.cake-slide .visual-area{
+    justify-content:center !important;
+    gap:clamp(10px,3vw,45px) !important;
+}
+
+.cake-slide .character{
+    width:min(48vw,680px) !important;
+    max-height:43vh !important;
+}
+
+.cake-slide .cake{
+    position:relative !important;
+    z-index:12 !important;
+    display:block !important;
+    width:min(22vw,300px) !important;
+    max-height:34vh !important;
+    height:auto !important;
+    object-fit:contain !important;
+    margin:0 !important;
+    filter:drop-shadow(0 12px 20px rgba(0,0,0,.6)) !important;
+}
+
+.celebrate-slide .visual-area{
+    height:43vh !important;
+    bottom:1vh !important;
+}
+
+.celebrate-slide .character{
+    width:min(62vw,850px) !important;
+    max-height:42vh !important;
+}
+
+.visual-slide img{
+    pointer-events:none !important;
+}
+
+/* Keep navigation controls above everything */
+#controls{
+    z-index:100 !important;
+}
+
+/* Mobile */
+@media(max-width:700px){
+
+    .visual-slide{
+        padding-top:25px !important;
+    }
+
+    .visual-slide .slide-text{
+        width:94vw !important;
+    }
+
+    .visual-slide .title{
+        font-size:clamp(30px,9vw,48px) !important;
+    }
+
+    .visual-slide .subtitle{
+        font-size:clamp(18px,5vw,28px) !important;
+    }
+
+    .visual-slide .visual-area{
+        height:42vh !important;
+        bottom:3vh !important;
+    }
+
+    .cake-slide .character{
+        width:62vw !important;
+        max-height:34vh !important;
+    }
+
+    .cake-slide .cake{
+        width:25vw !important;
+        max-height:28vh !important;
+    }
+
+    .celebrate-slide .character{
+        width:82vw !important;
+        max-height:36vh !important;
+    }
+}
+
+/* ===== IMAGE POSITION ONLY — KEEP ALL TEXT ===== */
+
+.cake-slide-fixed .fixed-slide-images,
+.celebrate-slide-fixed .fixed-slide-images,
+.visual-slide .visual-area{
+    position:absolute !important;
+    left:0 !important;
+    right:0 !important;
+    bottom:0 !important;
+    top:auto !important;
+    height:38vh !important;
+    z-index:10 !important;
+    display:flex !important;
+    align-items:flex-end !important;
+    justify-content:center !important;
+}
+
+/* Images stay BELOW the text */
+.cake-slide-fixed .fixed-slide-images img,
+.celebrate-slide-fixed .fixed-slide-images img,
+.visual-slide .visual-area img{
+    position:relative !important;
+    z-index:10 !important;
+    max-height:35vh !important;
+}
+
+/* Keep text clearly ABOVE images */
+.cake-slide-fixed .fixed-slide-text,
+.celebrate-slide-fixed .fixed-slide-text,
+.visual-slide .slide-text{
+    position:relative !important;
+    z-index:200 !important;
+}
+
+/* Don't let particles cover text */
+#particles{
+    z-index:2 !important;
+}
+
+#content{
+    position:relative !important;
+    z-index:100 !important;
+}
+
+#content .title,
+#content .subtitle{
+    position:relative !important;
+    z-index:300 !important;
+}
+
+/* Cake */
+.cake-slide-fixed .cake-images{
+    gap:20px !important;
+}
+
+.cake-slide-fixed .cake{
+    max-width:260px !important;
+}
+
+/* Mobile */
+@media(max-width:700px){
+    .cake-slide-fixed .fixed-slide-images,
+    .celebrate-slide-fixed .fixed-slide-images,
+    .visual-slide .visual-area{
+        height:34vh !important;
+    }
+
+    .cake-slide-fixed .fixed-slide-images img,
+    .celebrate-slide-fixed .fixed-slide-images img,
+    .visual-slide .visual-area img{
+        max-height:31vh !important;
+    }
+}
+/* =========================================================
+   FINAL TEXT + PHOTO LAYOUT FIX
+   Text stays readable, photos stay below text.
+   ========================================================= */
+
+#content{
+    position:relative !important;
+    z-index:20 !important;
+    width:100% !important;
+    height:100% !important;
+}
+
+#particles{
+    z-index:2 !important;
+    pointer-events:none !important;
+}
+
+#vignette{
+    z-index:3 !important;
+    pointer-events:none !important;
+}
+
+.visual-slide{
+    position:relative !important;
+    width:100% !important;
+    height:100% !important;
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:center !important;
+    justify-content:flex-start !important;
+    overflow:hidden !important;
+    padding-top:clamp(35px,6vh,80px) !important;
+    box-sizing:border-box !important;
+}
+
+.visual-slide .slide-text{
+    position:relative !important;
+    z-index:30 !important;
+    width:min(92vw,1100px) !important;
+    text-align:center !important;
+    flex-shrink:0 !important;
+}
+
+.visual-slide .title{
+    position:relative !important;
+    z-index:31 !important;
+    margin:0 0 12px !important;
+    line-height:1.08 !important;
+    text-shadow:
+        0 3px 8px rgba(0,0,0,.95),
+        0 0 18px rgba(0,0,0,.8) !important;
+}
+
+.visual-slide .subtitle{
+    position:relative !important;
+    z-index:31 !important;
+    max-width:1000px !important;
+    margin:0 auto !important;
+    line-height:1.35 !important;
+    text-shadow:
+        0 3px 8px rgba(0,0,0,.95),
+        0 0 14px rgba(0,0,0,.85) !important;
+}
+
+.visual-slide .visual-area{
+    position:absolute !important;
+    z-index:10 !important;
+    left:0 !important;
+    right:0 !important;
+    bottom:2vh !important;
+    width:100% !important;
+    height:48vh !important;
+    min-height:280px !important;
+    display:flex !important;
+    justify-content:center !important;
+    align-items:flex-end !important;
+    pointer-events:none !important;
+}
+
+.visual-slide .character{
+    position:relative !important;
+    z-index:11 !important;
+    display:block !important;
+    width:min(52vw,720px) !important;
+    max-width:720px !important;
+    max-height:46vh !important;
+    height:auto !important;
+    object-fit:contain !important;
+    margin:0 !important;
+    transform:none !important;
+    filter:drop-shadow(0 12px 22px rgba(0,0,0,.55)) !important;
+}
+
+.cake-slide .visual-area{
+    justify-content:center !important;
+    gap:clamp(10px,3vw,45px) !important;
+}
+
+.cake-slide .character{
+    width:min(48vw,680px) !important;
+    max-height:43vh !important;
+}
+
+.cake-slide .cake{
+    position:relative !important;
+    z-index:12 !important;
+    display:block !important;
+    width:min(22vw,300px) !important;
+    max-height:34vh !important;
+    height:auto !important;
+    object-fit:contain !important;
+    margin:0 !important;
+    filter:drop-shadow(0 12px 20px rgba(0,0,0,.6)) !important;
+}
+
+.celebrate-slide .visual-area{
+    height:43vh !important;
+    bottom:1vh !important;
+}
+
+.celebrate-slide .character{
+    width:min(62vw,850px) !important;
+    max-height:42vh !important;
+}
+
+.visual-slide img{
+    pointer-events:none !important;
+}
+
+/* Keep navigation controls above everything */
+#controls{
+    z-index:100 !important;
+}
+
+/* Mobile */
+@media(max-width:700px){
+
+    .visual-slide{
+        padding-top:25px !important;
+    }
+
+    .visual-slide .slide-text{
+        width:94vw !important;
+    }
+
+    .visual-slide .title{
+        font-size:clamp(30px,9vw,48px) !important;
+    }
+
+    .visual-slide .subtitle{
+        font-size:clamp(18px,5vw,28px) !important;
+    }
+
+    .visual-slide .visual-area{
+        height:42vh !important;
+        bottom:3vh !important;
+    }
+
+    .cake-slide .character{
+        width:62vw !important;
+        max-height:34vh !important;
+    }
+
+    .cake-slide .cake{
+        width:25vw !important;
+        max-height:28vh !important;
+    }
+
+    .celebrate-slide .character{
+        width:82vw !important;
+        max-height:36vh !important;
+    }
+}
 </style>
 </head>
 
@@ -266,8 +1079,8 @@ body{
     <div id="controls">Click / Space / → : Next &nbsp; | &nbsp; ← : Previous</div>
 
     <div id="start">
-        <h1>✨ Best Friend Theatre ✨</h1>
-        <p>A little cinematic friendship surprise, made specially for Shree.</p>
+        <h1>✨ Best Sister Theatre ✨</h1>
+        <p>A little cinematic sister surprise, made specially for Avantika.</p>
         <button id="startBtn">▶ Start Experience</button>
     </div>
 </div>
@@ -296,13 +1109,13 @@ const slides = [
     {
         type:"birthday",
         bg:"assets/background_birthday.png",
-        title:"🎂 Happy Birthday, Shree! 🎂",
+        title:"🎂 Happy Birthday, Avantika! 🎂",
         subtitle:"Today is your day — full of smiles, happiness and beautiful memories."
     },
     {
         type:"cake",
         bg:"assets/background_birthday.png",
-        girl:"assets/girl_happy.png",
+        girl:"assets/downloaded_photo_1.png",
         cake:"assets/cake.png",
         title:"A Special Celebration",
         subtitle:"Because someone as wonderful as you deserves a celebration."
@@ -316,7 +1129,7 @@ const slides = [
     {
         type:"celebrate",
         bg:"assets/background_birthday.png",
-        girl:"assets/girl_celebrate.png",
+        girl:"assets/downloaded_photo_2.png",
         title:"🎉 Keep Smiling!",
         subtitle:"Keep shining, keep growing, and keep being the amazing person you are."
     },
@@ -324,39 +1137,39 @@ const slides = [
         type:"memory",
         bg:"assets/background_garden.png",
         title:"🌿 Beautiful Memories",
-        text:"Some moments become memories. Some friendships become part of the journey. Ours is one of those friendships."
+        text:"Some moments become memories. Some special sister bonds become part of the journey. Ours is one of those special sister bonds."
     },
     {
         type:"message",
         bg:"assets/background_garden.png",
-        title:"A Small Message",
-        text:"Life keeps changing, people come and go, but the good moments we share are always worth remembering. Thank you for being a genuinely good friend."
+        title:"💌 A Little Message for My Sister",
+        text:"Life keeps changing, people come and go, but the beautiful moments we share are always worth remembering. Thank you for being such a special sister in my life."
     },
     {
         type:"you",
         bg:"assets/background_garden.png",
         title:"✨ You Are...",
-        text:"Kind. Strong. Funny. Precious as a friend. And absolutely deserving of every good thing coming your way."
+        text:"Kind. Strong. Funny. Caring. And one of the most precious sisters anyone could ask for."
     },
     {
         type:"adventure",
         bg:"assets/background_garden.png",
-        title:" More Adventures Ahead",
+        title:"🌸 More Adventures Ahead",
         text:"More laughs. More crazy conversations. More memorable days. More achievements to celebrate."
     },
     {
-        type:"friendship",
+        type:"Sister Bond",
         bg:"assets/background_finale.png",
         card:"assets/friendship_card.png",
-        title:"🤝 Friendship",
-        text:"Thank you for being a part of my journey. Here's to a beautiful friendship and many more memories ahead."
+        title:"👭 Sister Bond",
+        text:"Thank you for being such a special sister in my journey. Here's to our beautiful bond and many more memories ahead."
     },
     {
         type:"finale",
         bg:"assets/background_finale.png",
-        title:"🌟 Happy Birthday, Shree! 🌟",
+        title:"🌟 Happy Birthday, Avantika! 🌟",
         subtitle:"Stay happy. Stay blessed. Keep smiling. And keep being you.",
-        text:"— Your Best Friend"
+        text:"— Your Sister ❤️"
     }
 ];
 
@@ -454,18 +1267,40 @@ function render(){
     }
     else if(s.type==="cake"){
         html=`
-            <div class="title" style="font-size:clamp(34px,5vw,70px)">${s.title}</div>
-            <div class="subtitle">${s.subtitle}</div>
-            <img class="character" src="${s.girl}">
-            <img class="cake" src="${s.cake}">
+            <div class="cake-slide-fixed">
+                <div class="fixed-slide-text">
+                    <div class="title" style="font-size:clamp(34px,5vw,70px)">
+                        ${s.title}
+                    </div>
+                    <div class="subtitle">
+                        ${s.subtitle}
+                    </div>
+                </div>
+
+                <div class="fixed-slide-images cake-images">
+                    <img class="character" src="${s.girl}" alt="Birthday photos">
+                    <img class="cake" src="${s.cake}" alt="Birthday cake">
+                </div>
+            </div>
         `;
         makeHearts(10);
     }
     else if(s.type==="celebrate"){
         html=`
-            <div class="title">${s.title}</div>
-            <div class="subtitle">${s.subtitle}</div>
-            <img class="character" src="${s.girl}">
+            <div class="celebrate-slide-fixed">
+                <div class="fixed-slide-text">
+                    <div class="title">
+                        ${s.title}
+                    </div>
+                    <div class="subtitle">
+                        ${s.subtitle}
+                    </div>
+                </div>
+
+                <div class="fixed-slide-images celebrate-images">
+                    <img class="character" src="${s.girl}" alt="Sister photos">
+                </div>
+            </div>
         `;
         burst();
     }
@@ -478,15 +1313,14 @@ function render(){
         `;
         makeSparks(35);
     }
-    else if(s.type==="friendship"){
+    else if(s.type==="Sister Bond"){
         html=`
-            <div class="card">
+            <div class="card sister-bond-card">
                 <div class="title" style="font-size:clamp(34px,5vw,62px)">${s.title}</div>
-                <img src="${s.card}" style="width:min(440px,75vw);margin:28px auto 18px;display:block;border-radius:18px;box-shadow:0 15px 40px rgba(0,0,0,.45)">
+                <img class="sister-main-photo" src="${s.card}" alt="Sister">
                 <div class="subtitle">${s.text}</div>
             </div>
         `;
-        makeHearts(14);
     }
     else if(s.type==="finale"){
         html=`
@@ -594,5 +1428,85 @@ stage.addEventListener("touchend",e=>{
     }
 },{passive:true});
 </script>
+
+<!-- FINAL MUSIC FIX -->
+<audio id="birthdayMusic" preload="auto">
+    <source src="assets/music/birthday.mp3" type="audio/mpeg">
+    <source src="assets/music/birthday.ogg" type="audio/ogg">
+</audio>
+
+<script>
+(function(){
+
+    const music = document.getElementById("birthdayMusic");
+
+    if(!music) return;
+
+    music.loop = false;
+    music.volume = 0.85;
+
+    let musicStarted = false;
+
+    function startBirthdayMusic(){
+        if(musicStarted) return;
+
+        const p = music.play();
+
+        if(p && typeof p.then === "function"){
+            p.then(function(){
+                musicStarted = true;
+                console.log("[Music] Birthday music started");
+            }).catch(function(err){
+                console.log("[Music] Waiting for user interaction:", err);
+            });
+        }else{
+            musicStarted = true;
+        }
+    }
+
+    /*
+       Try immediately.
+       If browser blocks autoplay, first user interaction
+       will start the music.
+    */
+    startBirthdayMusic();
+
+    ["click","pointerdown","touchstart","keydown"].forEach(function(eventName){
+        window.addEventListener(
+            eventName,
+            startBirthdayMusic,
+            {once:false, passive:true}
+        );
+    });
+
+})();
+</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
